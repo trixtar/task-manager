@@ -1,12 +1,13 @@
 import React from 'react';
-import './styles.css';
+import styles from './styles.css';
 
-const Task = () => {
+const Task = ({task}) => {
+    console.log(task);
     return (
-        <div className={styles.root}>
-            <span>Tarea</span>
+        <li className={styles.root}>
+            <span>{task.title}</span>
             <span>X</span>
-        </div>
+        </li>
     );
 };
 

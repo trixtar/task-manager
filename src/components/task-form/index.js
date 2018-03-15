@@ -1,24 +1,55 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import uuidv1 from 'uuid';
+import {addTask} from '../../actions/index';
+import styles from './styles.css';
 
-export default class TaskForm extends Component {
-    state={
-        task: '',
+const mapDispatchToProps = dispatch => {
+    return {
+        addTask: task => dispatch(addTask(task))
+    };
+};
+
+class ConnectedTaskForm extends Component {
+    state = {
+        taskTitle: '',
     }
 
     handleInput = (event) => {
-        this.setState({task: event.target.value});
+        this.setState({[event.target.id]: event.target.value});
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const {taskTitle} = this.state;
+        const id = uuidv1();
+        console.log(id);
+        this.props.addTask(taskTitle, id);
+        this.setState({taskTitle: ''});
     }
 
     render() {
-        console.log(this.state.task);
+        const {taskTitle} = this.state;
         return (
-            <label>
-                <input
-                    type='text'
-                    placeholder='Escriba su tarea aquí'
-                    value={this.state.task}
-                    onChange={this.handleInput} />
-            </label>
+            <form onSubmit={this.handleSubmit}>
+                <label className={styles.formGroup}>
+                    <span>Tarea: </span>
+                    <input
+                        type='text'
+                        className={styles.formInput}
+                        placeholder='Escriba su tarea aquí'
+                        id='taskTitle'
+                        value={taskTitle}
+                        onChange={this.handleInput} />
+                </label>
+                <button type='submit' className={styles.submit}>
+                    Guardar
+                </button>
+            </form>
         );
     }
 };
+
+const TaskForm = connect(null, mapDispatchToProps)(ConnectedTaskForm);
+
+export default TaskForm;
