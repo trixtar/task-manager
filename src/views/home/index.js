@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import TaskForm from '../../components/task-form';
-import TaskList from '../../components/task-list';
+import ConnectedTaskForm from '../../components/task-form';
+import ConnectedTaskList from '../../components/task-list';
 
 export default class Home extends Component {
     state={
@@ -10,8 +10,8 @@ export default class Home extends Component {
     render() {
         return (
             <main>
-                <TaskForm />
-                <TaskList />
+                <ConnectedTaskForm />
+                <ConnectedTaskList />
             </main>
         );
     };

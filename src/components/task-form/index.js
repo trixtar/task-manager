@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-class ConnectedTaskForm extends Component {
+class TaskForm extends Component {
     state = {
         title: '',
     }
@@ -23,7 +23,6 @@ class ConnectedTaskForm extends Component {
         event.preventDefault();
         const {title} = this.state;
         const id = uuidv1();
-        console.log(id);
         this.props.addTask({title, id});
         this.setState({title: ''});
     }
@@ -50,6 +49,6 @@ class ConnectedTaskForm extends Component {
     }
 };
 
-const TaskForm = connect(null, mapDispatchToProps)(ConnectedTaskForm);
+const ConnectedTaskForm = connect(null, mapDispatchToProps)(TaskForm);
 
 export default TaskForm;
