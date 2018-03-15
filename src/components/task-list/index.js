@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import Task from '../task/index';
 import styles from './styles.css';
 
-
 // de donde sale el state con los tasks posta?
 const mapStateToProps = state => {
     return {tasks: state.tasks}

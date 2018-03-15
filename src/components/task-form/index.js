@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => {
 
 class ConnectedTaskForm extends Component {
     state = {
-        taskTitle: '',
+        title: '',
     }
 
     handleInput = (event) => {
@@ -21,15 +21,15 @@ class ConnectedTaskForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const {taskTitle} = this.state;
+        const {title} = this.state;
         const id = uuidv1();
         console.log(id);
-        this.props.addTask(taskTitle, id);
-        this.setState({taskTitle: ''});
+        this.props.addTask({title, id});
+        this.setState({title: ''});
     }
 
     render() {
-        const {taskTitle} = this.state;
+        const {title} = this.state;
         return (
             <form onSubmit={this.handleSubmit}>
                 <label className={styles.formGroup}>
@@ -38,8 +38,8 @@ class ConnectedTaskForm extends Component {
                         type='text'
                         className={styles.formInput}
                         placeholder='Escriba su tarea aquí'
-                        id='taskTitle'
-                        value={taskTitle}
+                        id='title'
+                        value={title}
                         onChange={this.handleInput} />
                 </label>
                 <button type='submit' className={styles.submit}>

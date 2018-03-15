@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.css';
 
 const Task = ({task}) => {
@@ -10,5 +11,9 @@ const Task = ({task}) => {
         </li>
     );
 };
+
+Task.propTypes = {
+    task: PropTypes.object.isRequired,
+}
 
 export default Task;
