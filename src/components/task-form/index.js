@@ -51,4 +51,4 @@ class TaskForm extends Component {
 
 const ConnectedTaskForm = connect(null, mapDispatchToProps)(TaskForm);
 
-export default TaskForm;
+export default ConnectedTaskForm;
